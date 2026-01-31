@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="hero">
+        <h2>Real-Time Face Detection</h2>
+        <p>Upload images, videos, or use your webcam for instant face detection</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="image">Single Image</button>
+        <button class="tab-btn" data-tab="video">Video</button>
+        <button class="tab-btn" data-tab="batch">Batch Upload</button>
+        <button class="tab-btn" data-tab="webcam">Webcam</button>
+    </div>
+
+    <!-- Single Image Tab -->
+    <div class="tab-content active" id="image-tab">
+        <div class="upload-section">
+            <h3>Upload an Image</h3>
+            <div class="upload-area" id="image-upload-area">
+                <div class="upload-icon">📷</div>
+                <p>Drag and drop an image here or click to browse</p>
+                <input type="file" id="image-input" accept="image/*" hidden>
+                <button class="btn btn-primary" onclick="document.getElementById('image-input').click()">Choose Image</button>
+            </div>
+            <div id="image-preview" class="preview-area"></div>
+            <button class="btn btn-success" id="detect-image-btn" style="display:none;">Detect Faces</button>
+        </div>
+    </div>
+
+    <!-- Video Tab -->
+    <div class="tab-content" id="video-tab">
+        <div class="upload-section">
+            <h3>Upload a Video</h3>
+            <div class="upload-area" id="video-upload-area">
+                <div class="upload-icon">🎥</div>
+                <p>Drag and drop a video here or click to browse</p>
+                <input type="file" id="video-input" accept="video/*" hidden>
+                <button class="btn btn-primary" onclick="document.getElementById('video-input').click()">Choose Video</button>
+            </div>
+            <div id="video-preview" class="preview-area"></div>
+            <button class="btn btn-success" id="detect-video-btn" style="display:none;">Process Video</button>
+        </div>
+    </div>
+
+    <!-- Batch Upload Tab -->
+    <div class="tab-content" id="batch-tab">
+        <div class="upload-section">
+            <h3>Batch Upload</h3>
+            <div class="upload-area" id="batch-upload-area">
+                <div class="upload-icon">📁</div>
+                <p>Drag and drop multiple files here or click to browse</p>
+                <input type="file" id="batch-input" accept="image/*,video/*" multiple hidden>
+                <button class="btn btn-primary" onclick="document.getElementById('batch-input').click()">Choose Files</button>
+            </div>
+            <div id="batch-preview" class="preview-area"></div>
+            <button class="btn btn-success" id="detect-batch-btn" style="display:none;">Process All Files</button>
+        </div>
+    </div>
+
+    <!-- Webcam Tab -->
+    <div class="tab-content" id="webcam-tab">
+        <div class="webcam-section">
+            <h3>Real-Time Face Detection</h3>
+            <div class="webcam-container">
+                <img id="webcam-feed" src="" alt="Webcam feed will appear here">
+                <p id="webcam-status">Click "Start Webcam" to begin</p>
+            </div>
+            <div class="webcam-controls">
+                <button class="btn btn-success" id="start-webcam-btn">Start Webcam</button>
+                <button class="btn btn-danger" id="stop-webcam-btn" style="display:none;">Stop Webcam</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" class="results-section" style="display:none;">
+        <h3>Detection Results</h3>
+        <div id="results-content"></div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading" style="display:none;">
+        <div class="spinner"></div>
+        <p>Processing... Please wait</p>
+    </div>
+</div>
+{% endblock %}

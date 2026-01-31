@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Detection Results - Face Detection App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="results-page">
+        <h2>Detection Results</h2>
+
+        <div class="result-card">
+            <h3>Processed Image/Video</h3>
+            <div class="result-image-container">
+                <img src="{{ url_for('detection.get_output', filename=filename) }}" alt="Detection result" class="result-image">
+            </div>
+
+            <div class="result-actions">
+                <a href="{{ url_for('detection.get_output', filename=filename) }}" download class="btn btn-primary">Download Result</a>
+                <a href="/" class="btn btn-secondary">Process Another File</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
